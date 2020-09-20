@@ -6,10 +6,10 @@ wordpress:
        - "8443:443"
      restart: always
      environment:
-       WORDPRESS_DB_HOST: 192.168.64.2:3306
+       WORDPRESS_DB_HOST: IP_DO_BANCO:PORTA
        WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: Wrpvs655321or
+       WORDPRESS_DB_PASSWORD: suasenhafoda
        WORDPRESS_DB_NAME: wordpress
      volumes:
-       - {caminho/servidor/certs}:/etc/ssl/certs/
-       - {caminho/servidor/privates/}:/etc/ssl/private/ 
+       - /etc/letsencrypt/archive/{APLICATION_NAME}/:/etc/letsencrypt/archive/{APLICATION_NAME}/
+       - /etc/letsencrypt/live/{APLICATION_NAME}/:/etc/letsencrypt/live/{APLICATION_NAME}/
