@@ -1,0 +1,19 @@
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+    # This first-listed virtual host is also the default for *:80
+    ServerName {APLICACAO.EXEMPLO.COM.BR}
+    ServerAlias www.{APLICACAO.EXEMPLO.COM.BR}
+    SSLProxyEngine on
+    ProxyRequests Off
+    #Caso queira que fique na raiz
+    ProxyPass / https://{IP_DO_SERVIDOR OU NOME_SERVIDOR}:8443/
+    ProxyPassReverse / {IP_DO_SERVIDOR OU NOME_SERVIDOR}:8443/
+    #Caso queira que somente um subfolder seja redirecionado
+    ProxyPass /dir/ https://{IP_DO_SERVIDOR OU NOME_SERVIDOR}:8443/
+    ProxyPassReverse /dir/ {IP_DO_SERVIDOR OU NOME_SERVIDOR}:8443/
+
+SSLCertificateFile /etc/letsencrypt/live/{APLICATION_NAME}/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/{APLICATION_NAME}/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
+</VirtualHost>
+</IfModule>
